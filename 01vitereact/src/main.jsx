@@ -31,7 +31,8 @@ const anotherElement = (
 
 
 const anotherUser = " chai aur react" // JSX
-
+// `createElement` is a core function in React.js that enables the creation of React elements, which form the foundation of React applications. 
+// Whether used directly or through JSX, `createElement` plays a vital role in building dynamic and interactive user interfaces with React.
 const reactElement = React.createElement(
     'a',
     {href: 'https://google.com',target: '_blank' },
