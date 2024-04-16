@@ -4,7 +4,8 @@ import Chai from "./chai"
 
 
 function App() {
-  const username = "chai aur code"
+  const username = "chai aur code" // Injecting JS in Code
+// We can use {} to inject our JS Syntax
 
   return (
     <>
