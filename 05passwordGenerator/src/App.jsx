@@ -3,15 +3,19 @@ import { useState, useCallback, useEffect, useRef } from 'react'
 
 
 function App() {
-  const [length, setLength] = useState(8)
+  const [length, setLength] = useState(8) // To store the state of the variables and reflect the changes in the state throughout the code simultaneously
   const [numberAllowed, setNumberAllowed] = useState(false);
   const [charAllowed, setCharAllowed] = useState(false)
   const [password, setPassword] = useState("")
 
   //useRef hook
-  const passwordRef = useRef(null)
+  const passwordRef = useRef(null) // `useRef` is used to create a mutable reference that persists between renders.
+  // The `passwordRef` reference is created using `useRef` to reference the password input element. 
+  // This reference is used to access and manipulate the password input field, such as selecting its content or setting focus.
 
-  const passwordGenerator = useCallback(() => {
+  const passwordGenerator = useCallback(() => { 
+    // It takes a callback function and an array of dependencies as arguments. 
+    // The callback function will only be re-created if any of the dependencies(variable values - [length, numberAllowed, charAllowed, setPassword]) change. 
     let pass = ""
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
     if (numberAllowed) str += "0123456789"
@@ -26,17 +30,19 @@ function App() {
     setPassword(pass)
 
 
-  }, [length, numberAllowed, charAllowed, setPassword])
+  }, [length, numberAllowed, charAllowed, setPassword]) // Used for Optimization, it keeps the dependency in cache and change only when needed
 
   const copyPasswordToClipboard = useCallback(() => {
     passwordRef.current?.select();
     passwordRef.current?.setSelectionRange(0, 999);
     window.navigator.clipboard.writeText(password)
-  }, [password])
+  }, [password]) // To copy the password on the clipboard
 
-  useEffect(() => {
+  useEffect(() => { 
+    // `useEffect` is a hook in React that allows you to perform side effects in function components. 
+    // Side effects can include data fetching, DOM manipulation, or subscribing to external events.
     passwordGenerator()
-  }, [length, numberAllowed, charAllowed, passwordGenerator])
+  }, [length, numberAllowed, charAllowed, passwordGenerator]) // will re render when the given parameters are changed
   return (
 
     <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-800 text-orange-500">
